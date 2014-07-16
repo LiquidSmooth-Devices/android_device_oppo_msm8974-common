@@ -181,8 +181,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 PRODUCT_PACKAGES += \\
     libHevcSwDecoder \\
     libmm-abl \\
-    libscale \\
-    libtime_genoff
+    libscale
 
 PRODUCT_PACKAGES += \\
     com.qualcomm.location \\
@@ -234,16 +233,6 @@ ifeq (\$(TARGET_BOARD_PLATFORM),msm8974)
 ifeq (\$(QCPATH),)
 
 LOCAL_PATH := \$(call my-dir)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := libtime_genoff
-LOCAL_MODULE_OWNER := oppo
-LOCAL_SRC_FILES := proprietary/vendor/lib/libtime_genoff.so
-LOCAL_MODULE_PATH := \$(PRODUCT_OUT)/system/vendor/lib
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libmm-abl

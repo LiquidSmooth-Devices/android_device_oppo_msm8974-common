@@ -157,10 +157,6 @@ bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
-# Time services
-bin/time_daemon
--vendor/lib/libtime_genoff.so
-
 # Listen service
 #vendor/lib/liblistenhardware.so
 #vendor/lib/liblistenjni.so
