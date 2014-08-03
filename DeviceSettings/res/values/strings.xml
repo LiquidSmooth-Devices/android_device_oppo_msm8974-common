@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Device Settings</string>
+    <string name="category_general_title">General</string>
+    <string name="hw_keys_title">Enable hardware keys</string>
+    <string name="hw_keys_summary">Disable when navbar is enabled</string>
+</resources>
