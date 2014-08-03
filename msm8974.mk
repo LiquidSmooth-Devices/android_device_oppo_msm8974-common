@@ -148,6 +148,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += qcmediaplayer
 
+
+#DeviceSettings
+PRODUCT_PACKAGES += \
+    DeviceSettings
+
 # NFC
 ifeq ($(TARGET_BUILD_VARIANT),user)
     NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
