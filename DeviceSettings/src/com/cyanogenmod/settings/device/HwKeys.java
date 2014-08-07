@@ -27,10 +27,10 @@ public class HwKeys {
         if (!isSupported())
             return;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPrefs.getBoolean(DevicePreferenceActivity.HW_KEYS, false))
-            Utils.writeValue(FILE, "0");
-        else
+        if (sharedPrefs.getBoolean(DevicePreferenceActivity.HW_KEYS, true))
             Utils.writeValue(FILE, "1");
+        else
+            Utils.writeValue(FILE, "0");
     }
 
     public static void enable(Context context) {
