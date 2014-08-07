@@ -28,9 +28,9 @@ public class HwKeys {
             return;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (sharedPrefs.getBoolean(DevicePreferenceActivity.HW_KEYS, false))
-            Utils.writeValue(FILE, "1");
-        else
             Utils.writeValue(FILE, "0");
+        else
+            Utils.writeValue(FILE, "1");
     }
 
     public static void enable(Context context) {
