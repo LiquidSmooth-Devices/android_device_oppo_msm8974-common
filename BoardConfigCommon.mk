@@ -76,6 +76,9 @@ BOARD_USE_RESAMPLER_IN_PCM_OFFLOAD_PATH := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
+# CM Hardware
+BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
+
 # Charger
 BOARD_CHARGER_RES := device/oppo/msm8974-common/charger/images
 
