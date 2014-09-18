@@ -62,11 +62,6 @@ TARGET_QCOM_MEDIA_VARIANT := caf-new
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
 
-# Simple time service client
-ifeq ($(QCPATH),)
-BOARD_USES_QC_TIME_SERVICES := true
-endif
-
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
