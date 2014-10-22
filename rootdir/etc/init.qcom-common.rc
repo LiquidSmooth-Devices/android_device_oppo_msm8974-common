@@ -235,6 +235,9 @@ on post-fs-data
     chown system system /sys/devices/platform/kcal_ctrl.0/kcal_min
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_min
 
+    chown system system /sys/devices/virtual/graphics/fb0/gamma
+    chmod 0660 /sys/devices/virtual/graphics/fb0/gamma
+
     chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
     chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
 

@@ -12,6 +12,13 @@
             android:summary="@string/hw_keys_summary"
             android:persistent = "true"
             android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="panel_gamma"
+            android:title="@string/panel_gamma_title"
+            android:summary="@string/panel_gamma_summary"
+            android:persistent = "true"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

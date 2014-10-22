@@ -30,9 +30,11 @@ import com.cyanogenmod.settings.device.R;
 public class DevicePreferenceActivity extends PreferenceFragment  {
 
     public static final String HW_KEYS = "hw_keys";
+    public static final String PANEL_GAMMA = "panel_gamma";
 
     private Context context;
     private CheckBoxPreference mHwKeys;
+    private CheckBoxPreference mPanelGamma;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,11 @@ public class DevicePreferenceActivity extends PreferenceFragment  {
         mHwKeys = (CheckBoxPreference) findPreference(HW_KEYS);
         mHwKeys.setChecked(HwKeys.isEnabled());
         mHwKeys.setEnabled(HwKeys.isSupported());
+
+        mPanelGamma = (CheckBoxPreference) findPreference(PANEL_GAMMA);
+        mPanelGamma.setChecked(PanelGamma.isEnabled());
+        mPanelGamma.setEnabled(PanelGamma.isSupported());
+
     }
 
     @Override
@@ -53,6 +60,12 @@ public class DevicePreferenceActivity extends PreferenceFragment  {
                 HwKeys.enable(context);
             else
                 HwKeys.disable(context);
+            return true;
+        } else if (preference == mPanelGamma) {
+            if (mPanelGamma.isChecked())
+                PanelGamma.enable(context);
+            else
+                PanelGamma.disable(context);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
