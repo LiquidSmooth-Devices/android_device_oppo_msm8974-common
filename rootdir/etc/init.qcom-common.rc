@@ -384,7 +384,7 @@ on property:init.svc.bootanim=stopped
     write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
+    write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
 
     write /sys/module/cpu_boost/parameters/boost_ms 20
     write /sys/module/cpu_boost/parameters/sync_threshold 1728000
@@ -590,20 +590,7 @@ service time_daemon /system/bin/time_daemon
     user root
     group root
 
-service qrngd /system/bin/qrngd -f
-    class main
-    user root
-    group root
-
-service qrngp /system/bin/qrngp
-    class main
-    user root
-    group root
-    oneshot
-    disabled
-
 on property:sys.boot_completed=1
-    start qrngp
     write /sys/devices/virtual/graphics/fb0/panel_calibration 1
 
 on property:vold.decrypt=trigger_restart_framework
