@@ -36,7 +36,10 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := krait
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+#TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+
+# Assertions
+TARGET_BOARD_INFO_FILE ?= device/oppo/msm8974-common/board-info.txt
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/oppo/msm8974-common/mkbootimg.mk
@@ -66,7 +69,6 @@ BLUETOOTH_HCI_USE_MCT := true
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_RES := device/oppo/msm8974-common/charger/images
 
 # CM Hardware
 BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
@@ -74,6 +76,7 @@ BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
 # Graphics
 BOARD_EGL_CFG := device/oppo/msm8974-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
+TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
@@ -143,6 +146,10 @@ EXTENDED_FONT_FOOTPRINT := true
 # inherit from the proprietary version
 ifneq ($(QCPATH),)
 -include $(QCPATH)/common/msm8974/BoardConfigVendor.mk
+
+ifeq ($(BOARD_USES_QCNE),true)
+TARGET_LDPRELOAD := libNimsWrap.so
+endif
 endif
 
 # SELinux policies
