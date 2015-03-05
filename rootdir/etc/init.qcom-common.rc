@@ -275,17 +275,8 @@ on post-fs-data
     chown system system /sys/devices/virtual/graphics/fb0/color_enhance
     chmod 0660 /sys/devices/virtual/graphics/fb0/color_enhance
 
-    chown system system /sys/devices/platform/kcal_ctrl.0/kcal
-    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal
-
-    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_min
-    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_min
-
-#    chown system system /sys/devices/virtual/graphics/fb0/gamma
-#    chmod 0660 /sys/devices/virtual/graphics/fb0/gamma
-
-    chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration
-    chmod 0660 /sys/devices/virtual/graphics/fb0/panel_calibration
+    chown system system /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
 
     chown system system /sys/devices/virtual/graphics/fb0/dyn_pu
     chmod 0660 /sys/devices/virtual/graphics/fb0/dyn_pu
@@ -401,6 +392,7 @@ on property:init.svc.bootanim=stopped
     write /sys/devices/system/cpu/cpufreq/interactive/target_loads "85 1500000:90 1800000:70"
     write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
 
     write /sys/module/cpu_boost/parameters/boost_ms 20
     write /sys/module/cpu_boost/parameters/sync_threshold 1728000
@@ -611,9 +603,6 @@ service time_daemon /system/bin/time_daemon
     class late_start
     user root
     group root
-
-on property:sys.boot_completed=1
-    write /sys/devices/virtual/graphics/fb0/panel_calibration 1
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth

@@ -193,6 +193,7 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     libbson \
     libcnefeatureconfig \
+    libtinyxml \
     libxml2
 
 # ANT+
@@ -241,10 +242,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.ir_proximity=true
-
-# HACK for QC errata issue
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwui.render_dirty_regions=false
 
 # Permissions
 PRODUCT_COPY_FILES += \
