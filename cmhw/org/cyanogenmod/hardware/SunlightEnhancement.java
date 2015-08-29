@@ -18,18 +18,18 @@ package org.cyanogenmod.hardware;
 
 import org.cyanogenmod.hardware.util.FileUtils;
 
-import android.util.Log;
+import android.os.SystemProperties;
 
 import java.io.File;
 
 /**
  * Facemelt mode!
+ *
+ * Depends on CABC to be enabled on this hardware.
  */
 public class SunlightEnhancement {
 
-    private static final String TAG = "SunlightEnhancement";
-
-    private static final String FILE_SRE = "/sys/class/graphics/fb0/sre";
+    private static String FILE_SRE = "/sys/class/graphics/fb0/sre";
 
     /**
      * Whether device supports SRE
@@ -53,12 +53,11 @@ public class SunlightEnhancement {
      * the operation failed while reading the status; true in any other case.
      */
     public static boolean isEnabled() {
-        try {
-            return Integer.parseInt(FileUtils.readOneLine(FILE_SRE)) > 0;
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
+        if (Integer.parseInt(FileUtils.readOneLine(FILE_SRE)) == 1) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
@@ -69,7 +68,11 @@ public class SunlightEnhancement {
      * failed; true in any other case.
      */
     public static boolean setEnabled(boolean status) {
-        return FileUtils.writeLine(FILE_SRE, status ? "2" : "0");
+        if (status == true) {
+            return FileUtils.writeLine(FILE_SRE, "1");
+        } else {
+            return FileUtils.writeLine(FILE_SRE, "0");
+        }
     }
 
     /**
@@ -78,6 +81,6 @@ public class SunlightEnhancement {
      * @return boolean False if adaptive backlight is not a dependency
      */
     public static boolean isAdaptiveBacklightRequired() {
-        return false;
+        return true;
     }
 }

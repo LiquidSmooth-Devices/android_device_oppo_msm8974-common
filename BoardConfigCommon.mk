@@ -35,6 +35,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := krait
+#TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Assertions
 TARGET_BOARD_INFO_FILE ?= device/oppo/msm8974-common/board-info.txt
@@ -79,6 +80,7 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HARDWARE_CLASS += device/oppo/msm8974-common/cmhw
 
 # Graphics
+BOARD_EGL_CFG := device/oppo/msm8974-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -115,7 +117,6 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
-CONFIG_EAP_PROXY                 := qmi
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -151,8 +152,8 @@ EXTENDED_FONT_FOOTPRINT := true
 # Enable dexpreopt to speed boot time
 ifeq ($(HOST_OS),linux)
   ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
-    ifeq ($(WITH_DEXPREOPT_BOOT_IMG_ONLY),)
-      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
     endif
   endif
 endif

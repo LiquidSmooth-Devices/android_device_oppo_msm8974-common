@@ -18,7 +18,7 @@ package org.cyanogenmod.hardware;
 
 import org.cyanogenmod.hardware.util.FileUtils;
 
-import android.util.Log;
+import android.os.SystemProperties;
 
 import java.io.File;
 
@@ -27,9 +27,7 @@ import java.io.File;
  */
 public class ColorEnhancement {
 
-    private static final String TAG = "ColorEnhancement";
-
-    private static final String FILE_CE = "/sys/class/graphics/fb0/color_enhance";
+    private static String FILE_CE = "/sys/class/graphics/fb0/color_enhance";
 
     /**
      * Whether device supports CE
@@ -37,7 +35,13 @@ public class ColorEnhancement {
      * @return boolean Supported devices must return always true
      */
     public static boolean isSupported() {
-        return new File(FILE_CE).exists();
+        File f = new File(FILE_CE);
+
+        if(f.exists()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -47,12 +51,11 @@ public class ColorEnhancement {
      * the operation failed while reading the status; true in any other case.
      */
     public static boolean isEnabled() {
-        try {
-            return Integer.parseInt(FileUtils.readOneLine(FILE_CE)) > 0;
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
+        if (Integer.parseInt(FileUtils.readOneLine(FILE_CE)) == 1) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
@@ -63,6 +66,10 @@ public class ColorEnhancement {
      * failed; true in any other case.
      */
     public static boolean setEnabled(boolean status) {
-        return FileUtils.writeLine(FILE_CE, status ? "1" : "0");
+        if (status == true) {
+            return FileUtils.writeLine(FILE_CE, "1");
+        } else {
+            return FileUtils.writeLine(FILE_CE, "0");
+        }
     }
 }
